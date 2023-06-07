@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-##from Reservar.views import 
+from Reservar.views import BusListView, BusCreateView, BusUpdateView, BusDeleteView
+
+app_name = 'Reservar'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-##    path('accounts/', include("django.contrib.auth.urls"))
+    path('buses/', BusListView.as_view(), name='bus_list'),
+    path('buses/create/', BusCreateView.as_view(), name='bus_create'),
+    path('buses/update/<int:pk>/', BusUpdateView.as_view(), name='bus_update'),
+    path('buses/delete/<int:pk>/', BusDeleteView.as_view(), name='bus_delete'),
 ]
