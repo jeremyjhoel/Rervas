@@ -32,20 +32,6 @@ class Asientos(models.Model):
     estado = models.BooleanField()
     bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
 
-def asignar_numero_asiento(sender, instance, **kwargs):
-    if not instance.numero:
-        # Obtener la cantidad de asientos del bus asociado
-        cantidad_asientos = instance.bus.cantidadAsientos
-
-        # Verificar si hay asientos disponibles
-        asientos_ocupados = Asientos.objects.filter(bus=instance.bus).count()
-        if asientos_ocupados < cantidad_asientos:
-            # Calcular el siguiente número de asiento disponible
-            siguiente_numero_asiento = asientos_ocupados + 1
-            instance.numero = siguiente_numero_asiento
-        else:
-            # Si no hay asientos disponibles, establecer el número de asiento como None
-            instance.numero = None
 
 class Reserva(models.Model):
     fechaReserva=models.DateTimeField(null=False)
