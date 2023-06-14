@@ -14,14 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from Reservar.views import BusListView, BusCreateView, BusUpdateView, BusDeleteView
+from django.urls import path, include
+#from Reservar.views import BusListView, BusCreateView, BusUpdateView, BusDeleteView
+from Reservar.views import index
 
 app_name = 'Reservar'
 
 urlpatterns = [
-    path('buses/', BusListView.as_view(), name='bus_list'),
-    path('buses/create/', BusCreateView.as_view(), name='bus_create'),
-    path('buses/update/<int:pk>/', BusUpdateView.as_view(), name='bus_update'),
-    path('buses/delete/<int:pk>/', BusDeleteView.as_view(), name='bus_delete'),
+    path('admin/', admin.site.urls),
+    path('index/', index, name='index'),
+    path('', index, name='index'),
+    path("accounts/", include("django.contrib.auth.urls")),
+
+
+
+    #path('buses/', BusListView.as_view(), name='bus_list'),
+    #path('buses/create/', BusCreateView.as_view(), name='bus_create'),
+    #path('buses/update/<int:pk>/', BusUpdateView.as_view(), name='bus_update'),
+    #path('buses/delete/<int:pk>/', BusDeleteView.as_view(), name='bus_delete'),
 ]
