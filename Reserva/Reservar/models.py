@@ -5,9 +5,9 @@ from django.dispatch import receiver
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100, null=False)
     apellido = models.CharField(max_length=100, null=False)
-    email = models.EmailField(max_length=100, null=False)
+    email = models.EmailField(max_length=100, null=False, unique=True)
     telefono = models.CharField(max_length=20, blank=True)
-    rut = models.CharField(max_length=200, null=False)
+    rut = models.CharField(max_length=200, null=False, unique=True)
 
     def __str__(self):
         return self.nombre
@@ -21,7 +21,7 @@ class Ruta(models.Model):
         return self.destino
 
 class Bus(models.Model):
-    patente=models.CharField(max_length=50)
+    patente=models.CharField(max_length=50, unique=True)
     cantidadAsientos = models.IntegerField()
 
     def __str__(self):
