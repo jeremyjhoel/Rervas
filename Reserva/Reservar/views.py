@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from .models import Cliente, Bus
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import BusForm
+from .forms import RutaForm
 
 
 def index(request):
@@ -88,3 +89,38 @@ class BusDeleteView(DeleteView):
     model = Bus
     template_name = 'buses/bus_delete.html'
     success_url = '/buses/'
+
+
+#Esto para las rutas:
+
+class RutaListView(ListView):
+    model = Ruta
+    template_name = 'rutas/ruta_list.html'
+    context_object_name = 'rutas'
+    success_url = '/rutas/'
+
+
+class RutaCreateView(CreateView):
+    model = Ruta
+    form_class = RutaForm
+    template_name = 'rutas/ruta_create.html'
+    success_url = '/rutas/'
+
+
+class RutaUpdateView(UpdateView):
+    model = Ruta
+    form_class = RutaForm
+    template_name = 'rutas/ruta_update.html'
+    success_url = '/rutas/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ruta_id'] = self.object.id
+        return context
+
+
+class RutaDeleteView(DeleteView):
+    model = Ruta
+    template_name = 'rutas/ruta_delete.html'
+    success_url = '/rutas/'
+
