@@ -1,0 +1,42 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+<div class="row">
+    {% if user.is_authenticated %}
+    <div class="col-md-6 body-content">
+        <h2>Listado de Buses</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patente</th>
+                    <th>Asientos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bus in buses %}
+                <tr>
+                    <td>{{ bus.id }}</td>
+                    <td>{{ bus.patente }}</td>
+                    <td>{{ bus.cantidadAsientos }}</td>
+                    <td>
+                        <a href="{% url 'editar_bus' bus.id %}" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'eliminar_bus' bus.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <h2>Crear Nuevo Bus</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form formulario %}
+            {% buttons %}
+                <button class="btn btn-primary" type="submit">Guardar</button>
+            {% endbuttons %}
+        </form>
+        {% bootstrap_messages %}
+    </div>
+    {% endif %}
+</div>

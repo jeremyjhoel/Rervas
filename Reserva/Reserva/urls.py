@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 #from Reservar.views import BusListView, BusCreateView, BusUpdateView, BusDeleteView
-from Reservar.views import index
+from Reservar.views import index, formBus, editarBus, eliminarBus
 
 app_name = 'Reservar'
 
@@ -25,6 +25,9 @@ urlpatterns = [
     path('index/', index, name='index'),
     path('', index, name='index'),
     path("accounts/", include("django.contrib.auth.urls")),
+    path('formBus/', formBus, name='formBus'),
+    path('buses/editar/<int:bus_id>/', editarBus, name='editar_bus'),
+    path('buses/eliminar/<int:bus_id>/', eliminarBus, name='eliminar_bus'),
 
 
 

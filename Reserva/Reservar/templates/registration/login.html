@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UTalBook</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
     {% load bootstrap5 %}
     {% bootstrap_css %}
 </head>
@@ -14,16 +17,18 @@
     <div class="min-vh-100 d-flex flex-row align-items-center">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card-group">
-                        <div class="card py-5 blur-grey">
-                            <div class="card-body text-center">
-                                <h1>UTalBook</h1>
-                            </div>
-                        </div>
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    
+                        
                         <div class="card py-4">
                             <div class="card-body d-flex align-items-center mx-auto">
                                 <div class="row">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <a href="{% url 'index' %}" class="">
+                                            <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Reserva</h3>
+                                        </a>
+                                        <h3>Login</h3>
+                                    </div>
                                     <div class="col">
                                         <form method="post">
                                             {% csrf_token %}
@@ -36,7 +41,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
