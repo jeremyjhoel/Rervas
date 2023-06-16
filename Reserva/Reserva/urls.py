@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 #from Reservar.views import BusListView, BusCreateView, BusUpdateView, BusDeleteView
 from Reservar.views import index, formBus, editarBus, eliminarBus
+from Reservar.views import RutaListView, RutaCreateView, RutaUpdateView, RutaDeleteView
 
 app_name = 'Reservar'
 
@@ -35,4 +36,9 @@ urlpatterns = [
     #path('buses/create/', BusCreateView.as_view(), name='bus_create'),
     #path('buses/update/<int:pk>/', BusUpdateView.as_view(), name='bus_update'),
     #path('buses/delete/<int:pk>/', BusDeleteView.as_view(), name='bus_delete'),
+
+    path('rutas/', RutaListView.as_view(), name='ruta_list'),
+    path('rutas/create/', RutaCreateView.as_view(), name='ruta_create'),
+    path('rutas/update/<int:pk>/', RutaUpdateView.as_view(), name='ruta_update'),
+    path('rutas/delete/<int:pk>/', RutaDeleteView.as_view(), name='ruta_delete'),
 ]
